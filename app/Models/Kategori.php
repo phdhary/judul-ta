@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori extends Model
 {
     use HasFactory;
+
+    protected $table="kategoris";
+    
+    public function judulta()
+    {
+        return $this->hasMany(JudulTA::Class);
+    }
 }

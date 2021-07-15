@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class JudulTA extends Model
 {
     use HasFactory;
+
+    protected $table='judul_t_a_s';
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class)
+    }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class);
+    }
 }
