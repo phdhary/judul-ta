@@ -15,7 +15,7 @@ class JudulTAController extends Controller
      */
     public function index()
     {
-        $judulta = JudulTA::orderBy('id','DESC')->get();
+        // $judulta = JudulTA::orderBy('id','DESC')->get();
         
         return "JUDUL TA INDEX";
     }
