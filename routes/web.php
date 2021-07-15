@@ -31,3 +31,17 @@ Route::resource('judulta', JudulTAController::class);
 Route::resource('kategori', KategoriController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
 
+
+
+Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth']],function(){
+    Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('settings', [AdminController::class, 'settings'])->name('admin.settings');
+});
+
+Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth']],function(){
+    Route::get('dashboard', [UserController::class, 'index'])->name('admin.dashboard');
+    Route::get('profile', [UserController::class, 'profile'])->name('admin.profile');
+    Route::get('settings', [UserController::class, 'settings'])->name('admin.settings');
+});
+

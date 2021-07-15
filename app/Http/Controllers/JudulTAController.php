@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Kategori;
+use App\Models\Mahasiswa;
 
 class JudulTAController extends Controller
 {
@@ -13,7 +15,9 @@ class JudulTAController extends Controller
      */
     public function index()
     {
-        //
+        $judulta = JudulTA::orderBy('id','DESC')->get();
+        
+        return "JUDUL TA INDEX";
     }
 
     /**
