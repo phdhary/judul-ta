@@ -24,7 +24,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::middleware(['middleware'=>'PreventBackHistory'])->group(function () {
+    Auth::routes();
+});
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('judulta', JudulTAController::class);
