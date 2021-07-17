@@ -69,6 +69,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'role'=>2,
             'password' => Hash::make($data['password']),
+            'link_telegram' => $data['link_telegram']
         ]);
     }
 }

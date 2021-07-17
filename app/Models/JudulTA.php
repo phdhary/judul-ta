@@ -16,8 +16,8 @@ class JudulTA extends Model
         return $this->belongsTo(Kategori::class);
     }
 
-    public function mahasiswa()
+    public function user()
     {
-        return $this->belongsTo(Mahasiswa::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -16,7 +16,7 @@ class CreateJudulTASTable extends Migration
         Schema::create('judul_t_a_s', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kategori_id');
-            $table->foreignId('mahasiswa_id');
+            $table->foreignId('user_id');
             $table->string('nama_judul',255)->default('');
             $table->longText('deskripsi')->default(null);
             $table->string('nama_dosen')->default('');

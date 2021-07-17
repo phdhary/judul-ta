@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'role',
         'password',
+        'link_telegram',
     ];
 
     /**
@@ -41,4 +42,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function judulta()
+    {
+        return $this->hasOne(JudulTA::class);
+    }
 }

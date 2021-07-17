@@ -20,7 +20,11 @@ class CreateUsersTable extends Migration
             $table->boolean('role')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignId('judul_t_a_id')->nullable();
+            $table->string('link_telegram')->default('');
+
             $table->rememberToken();
+            
             $table->timestamps();
         });
     }
