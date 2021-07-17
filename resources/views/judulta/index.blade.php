@@ -7,14 +7,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>DataTables</h1>
+                        <h1>Judul TA</h1>
                     </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>
-                        </ol>
-                    </div>
+                   
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -26,7 +21,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <a class="btn btn-block btn-primary" href="{{ route('judulta.create') }}">Tambah
-                                        data</a>
+                                        Judul TA</a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -38,6 +33,7 @@
                                                 <th>Nama Dosen</th>
                                                 <th>Mahasiswa</th>
                                                 <th>Kategori</th>
+                                                <th>Link Telegram</th>
                                                 <th>Action</th>
 
                                             </tr>
@@ -51,15 +47,21 @@
                                                     <td>{{ $judulta->nama_dosen }}</td>
                                                     <td>{{ $judulta->user->name }}</td>
                                                     <td>{{ $judulta->kategori->nama }}</td>
+                                                    <td>{{ $judulta->user->link_telegram }}</td>
                                                     <td>
                                                         <a class="btn btn-block btn-success"
                                                             href="{{ route('judulta.edit', $judulta) }}">
                                                             <span class="fas fa-edit"></span>
                                                         </a>
-                                                        <a class="btn btn-block btn-danger btn-sm"
-                                                            href="{{ route('judulta.destroy', $judulta) }}">
-                                                            <span class="fas fa-trash"></span>
-                                                        </a>
+                                                        <form action="{{ route('judulta.destroy', $judulta) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-block btn-danger btn-sm" type="submit">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button>
+
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -71,6 +73,7 @@
                                                 <th>Nama Dosen</th>
                                                 <th>Mahasiswa</th>
                                                 <th>Kategori</th>
+                                                <th>Link Telegram</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>

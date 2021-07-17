@@ -82,7 +82,11 @@ class JudulTAController extends Controller
      */
     public function edit($id)
     {
-        return "edit ajg";
+        $kategoris = Kategori::orderby('id','ASC')->get();
+        $users = User::orderby('name','ASC')->get();
+
+        $judulta = JudulTA::where('id', $id)->first();
+        return view('judulta.edit',compact('judulta', 'users', 'kategoris'));
     }
 
     /**
@@ -94,9 +98,25 @@ class JudulTAController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $kategori = Kategori::where('nama', $request->kategori)->first();
+        $user = User::where('name', $request->user)->first();
 
+        $judulta = JudulTA::where('id', $id)->first();
+        
+        $judulta->nama_judul = $request->nama_judul;
+        $judulta->deskripsi = $request->deskripsi;
+        $judulta->kategori_id = $kategori->id;
+        $judulta->user_id = $user->id;
+        $judulta->nama_dosen = $request->nama_dosen;
+        
+        $judulta->save();
+
+        $user->judul_t_a_id = $judulta->id;
+        $user->save();
+
+        return redirect()->route('judulta.index');
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -105,6 +125,12 @@ class JudulTAController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $judulta = JudulTA::find('id',$id)->first();
+        // $judulta->destroy();
+        $judulta = JudulTA::find($id);
+        $judulta->delete();
+        
+        return redirect()->route('judulta.index');
+
     }
 }
