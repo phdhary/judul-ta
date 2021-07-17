@@ -25,7 +25,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                                    <a class="btn btn-block btn-primary" href="{{ route('judulta.create') }}">Tambah
+                                        data</a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -37,6 +38,8 @@
                                                 <th>Nama Dosen</th>
                                                 <th>Mahasiswa</th>
                                                 <th>Kategori</th>
+                                                <th>Action</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -46,19 +49,29 @@
                                                     <td>{{ $judulta->nama_judul }}</td>
                                                     <td>{{ $judulta->deskripsi }}</td>
                                                     <td>{{ $judulta->nama_dosen }}</td>
-                                                    <td>{{ $judulta->mahasiswa_id }}</td>
+                                                    <td>{{ $judulta->user->name }}</td>
                                                     <td>{{ $judulta->kategori->nama }}</td>
-                                                   
+                                                    <td>
+                                                        <a class="btn btn-block btn-success"
+                                                            href="{{ route('judulta.edit', $judulta) }}">
+                                                            <span class="fas fa-edit"></span>
+                                                        </a>
+                                                        <a class="btn btn-block btn-danger btn-sm"
+                                                            href="{{ route('judulta.destroy', $judulta) }}">
+                                                            <span class="fas fa-trash"></span>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
+                                                <th>Nama Judul</th>
+                                                <th>Deskripsi</th>
+                                                <th>Nama Dosen</th>
+                                                <th>Mahasiswa</th>
+                                                <th>Kategori</th>
+                                                <th>Action</th>
                                             </tr>
                                         </tfoot>
                                     </table>
