@@ -29,7 +29,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/user/dashboard';
 
     /**
      * Create a new controller instance.
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'link_telegram' => ['required', 'string'],
         ]);
     }
 
@@ -69,7 +71,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'role'=>2,
             'password' => Hash::make($data['password']),
-            'link_telegram' => $data['link_telegram']
+            'link_telegram' => $data['link_telegram'],
         ]);
     }
 }
