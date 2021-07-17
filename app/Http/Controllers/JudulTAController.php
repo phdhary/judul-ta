@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kategori;
-use App\Models\Mahasiswa;
 use App\Models\JudulTA;
+use App\Models\User;
 
 class JudulTAController extends Controller
 {
@@ -30,7 +30,9 @@ class JudulTAController extends Controller
      */
     public function create()
     {
-        //
+        $kategoris = Kategori::orderby('id','ASC')->get();
+        $users = User::orderby('name','ASC')->get();
+        return view('judulta.create',compact('kategoris','users'));
     }
 
     /**
@@ -41,7 +43,24 @@ class JudulTAController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kategori = Kategori::where('nama', $request->kategori)->first();
+        $user = User::where('name', $request->user)->first();
+
+        
+        $judulta = new JudulTA;
+        $judulta->nama_judul = $request->nama_judul;
+        $judulta->deskripsi = $request->deskripsi;
+        $judulta->kategori_id = $kategori->id;
+        $judulta->user_id = $user->id;
+        $judulta->nama_dosen = $request->nama_dosen;
+        
+        $judulta->save();
+
+        $user->judul_t_a_id = $judulta->id;
+        $user->save();
+
+        return redirect()->route('judulta.index');
+
     }
 
     /**
@@ -63,7 +82,7 @@ class JudulTAController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "edit ajg";
     }
 
     /**
