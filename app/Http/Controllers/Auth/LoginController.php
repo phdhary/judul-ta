@@ -32,9 +32,9 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         if (Auth()->user()->role == 1) {
-            return route('admin.dashboard');
+            return route('judulta.index');
         } elseif (Auth()->user() == 2) {
-            return route('user.dashboard');
+            return route('judulta.index');
         }
     }
 
@@ -58,10 +58,10 @@ class LoginController extends Controller
 
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
             if(auth()->user()->role == 1){
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('judulta.index');
             }
             elseif(auth()->user()->role == 2){
-                return redirect()->route('user.dashboard');
+                return redirect()->route('judulta.index');
             }
         }
         else{

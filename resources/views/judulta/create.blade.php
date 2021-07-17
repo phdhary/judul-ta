@@ -4,9 +4,9 @@
     <div class="content-wrapper">
 
         <!-- general form elements -->
-        <div class="card card-primary">
+        <div class="card card-square card-secondary">
             <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
+                <h3 class="card-title">Tambah Judul TA</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -14,7 +14,7 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="nama_judul">Nama Judul</label>
+                        <label for="deskripsi">Nama Judul</label>
                         <input id="nama_judul" type="text" class="form-control" placeholder="Masukkan nama judul"
                             @error('nama_judul') is-invalid @enderror" name="nama_judul" value="{{ old('nama_judul') }}"
                             required autocomplete="nama_judul" autofocus>
@@ -56,8 +56,9 @@
                         <select id="user" class="form-control" @error('user') is-invalid @enderror" name="user"
                             value="{{ old('user') }}" required autocomplete="user" autofocus>
                             @foreach ($users as $user)
-                                <option>{{ $user->name }}</option>
-
+                                @if ($user->role != 1)
+                                    <option>{{ $user->name }}</option>
+                                @endif
                             @endforeach
                         </select>
                         @error('kategori')
@@ -66,7 +67,7 @@
                             </span>
                         @enderror
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="nama_dosen">Nama Dosen</label>
                         <input id="nama_dosen" type="text" class="form-control" placeholder="Masukkan Nama Dosen"

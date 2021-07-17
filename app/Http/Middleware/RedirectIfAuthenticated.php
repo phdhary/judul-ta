@@ -27,10 +27,10 @@ class RedirectIfAuthenticated
             // }
 
             if(Auth::guard($guard)->check() && Auth::user()->role == 1){
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('judulta.index');
             }
             elseif(Auth::guard($guard)->check() && Auth::user()->role == 2){
-                return redirect()->route('user.dashboard');
+                return redirect()->route('judulta.index');
             }
         }
 

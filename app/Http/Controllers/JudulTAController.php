@@ -31,7 +31,7 @@ class JudulTAController extends Controller
     public function create()
     {
         $kategoris = Kategori::orderby('id','ASC')->get();
-        $users = User::orderby('name','ASC')->get();
+        $users = User::whereNotIn('role',[1])->whereNull('judul_t_a_id')->get();
         return view('judulta.create',compact('kategoris','users'));
     }
 
